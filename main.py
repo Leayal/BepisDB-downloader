@@ -1,4 +1,6 @@
 from download import download
+import configparser
+import os.path
 
 def menu():
     #make cfg file or txt that allows to automaticaly select option
@@ -12,6 +14,8 @@ def menu():
     print("7. SH")
     print("8. HC")
     print("9. SVS")
+    print("10. CONFIG")
+    print("11. EXIT")
 
     selected = input()
 
@@ -116,10 +120,13 @@ def menu():
         else:
             mode = "basic"
             basic(game, url, mode)
+    elif selected == "10":
+        program_config()
+    elif selected == "11":
+        exit(0)
     else:
-        print("Please select one of the correct options (1-9):")
-        main()
-
+        print("Please select one of the correct options (1-11):")
+        menu()
 
 def KK(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -311,7 +318,65 @@ def basic(game, url, mode):
     start_from = input()
     download(mode = mode, game = game, url = url, name = name, tags = tags, start_from = start_from)
 
+def create_config():
+    config = configparser.ConfigParser()
+    config['DEFAULT'] = {'browser_visibility': '1','card_download_interval': '5','website_load_interval': '5','close_after_download': '1'}
+    config['USER'] = {'browser_visibility': '1','card_download_interval': '5','website_load_interval': '5','close_after_download': '1'}
+    with open('config.ini', 'w') as configfile:
+      config.write(configfile)
+
+def program_config():
+    #loading config
+    #...
+    value = None
+    print("PROGRAM CONFIGURATION EDITOR (1-5) - Enter for default.")
+    print("1. Enable/Disable browser visibility(GUI). Current state:",)
+    print("2. Set card download interval. Current interval:",)
+    print("3. Wait for website to load interval. Current interval:",)
+    print("4. Close program after download. Current value:",)
+    print("5. Display default values.") #displays DEFAULT config
+    print("6. Back to main menu.")
+    choice = input()
+    if(choice == "1"):
+        print("Enter [number {1/0} <default: 1>]")
+        value = input()
+        if(value == None):
+            value = 1
+    elif(choice == "2"):
+        print("Enter [number {integer} <default: 5>]")
+        value = input()
+        if(value == None):
+            value = 5
+    elif (choice == "3"):
+        print("Enter [number {integer} <default: 5>]")
+        value = input()
+        if(value == None):
+            value = 5
+    elif (choice == "4"):
+        value = input()
+        print("Enter [number {1/0} <default: 1>]")
+        if(value == None):
+            value = 1
+    elif (choice == "5"):
+        print("Here the default values form config.ini")
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        print("browser_visibility: ",config['DEFAULT']['browser_visibility'])
+        print("card_download_interval: ",config['DEFAULT']['card_download_interval'])
+        print("website_load_interval: ",config['DEFAULT']['website_load_interval'])
+        print("close_after_download: ",config['DEFAULT']['close_after_download'])
+        program_config()
+    elif (choice == "6"):
+        menu()
+    else:
+        print("Please select one of the correct options (1-6):")
+        program_config()
+
 def main():
+    #check if config exists, if not create one
+    config = os.path.exists("config.ini")
+    if(config == False):
+        create_config()
     menu()
 
 if __name__ == "__main__":
