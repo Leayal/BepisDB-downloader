@@ -320,56 +320,95 @@ def basic(game, url, mode):
 
 def create_config():
     config = configparser.ConfigParser()
-    config['DEFAULT'] = {'browser_visibility': '1','card_download_interval': '5','website_load_interval': '5','close_after_download': '1'}
-    config['USER'] = {'browser_visibility': '1','card_download_interval': '5','website_load_interval': '5','close_after_download': '1'}
-    with open('config.ini', 'w') as configfile:
-      config.write(configfile)
+    config['DEFAULT'] = {'browser_visibility': '1','card_download_interval': '5','website_load_interval': '5','close_browser_after_download': '0','close_program_after_download': '1'}
+    config['USER'] = {'browser_visibility': '1','card_download_interval': '5','website_load_interval': '5','close_browser_after_download': '0','close_program_after_download': '1'}
+    with open('config.ini', 'w') as conf:
+        config.write(conf)
 
 def program_config():
     #loading config
     #...
+    config = configparser.ConfigParser()
+    config.read("config.ini")
+    user_cfg = config["USER"]
     value = None
     print("PROGRAM CONFIGURATION EDITOR (1-5) - Enter for default.")
-    print("1. Enable/Disable browser visibility(GUI). Current state:",)
-    print("2. Set card download interval. Current interval:",)
-    print("3. Wait for website to load interval. Current interval:",)
-    print("4. Close program after download. Current value:",)
-    print("5. Display default values.") #displays DEFAULT config
-    print("6. Back to main menu.")
+    print("1. Enable/Disable browser visibility(GUI).")
+    print("2. Set card download interval.")
+    print("3. Wait for website to load interval.")
+    print("4. Close browser after download.")
+    print("4. Close program after download.")
+    print("6. Display default values.") #displays DEFAULT config
+    print("7. Display current values.")
+    print("8. Back to main menu.")
     choice = input()
     if(choice == "1"):
         print("Enter [number {1/0} <default: 1>]")
         value = input()
         if(value == None):
             value = 1
+        user_cfg['browser_visibility'] = str(value)
+        with open('config.ini', 'w') as conf:
+            config.write(conf)
+        program_config()
     elif(choice == "2"):
         print("Enter [number {integer} <default: 5>]")
         value = input()
         if(value == None):
             value = 5
+        user_cfg['card_download_interval'] = str(value)
+        with open('config.ini', 'w') as conf:
+            config.write(conf)
+        program_config()
     elif (choice == "3"):
         print("Enter [number {integer} <default: 5>]")
         value = input()
         if(value == None):
             value = 5
+        user_cfg['website_load_interval'] = str(value)
+        with open('config.ini', 'w') as conf:
+            config.write(conf)
+        program_config()
     elif (choice == "4"):
-        value = input()
         print("Enter [number {1/0} <default: 1>]")
+        value = input()
         if(value == None):
             value = 1
+        user_cfg['close_browser_after_download'] = str(value)
+        with open('config.ini', 'w') as conf:
+            config.write(conf)
+        program_config()
     elif (choice == "5"):
-        print("Here the default values form config.ini")
-        config = configparser.ConfigParser()
+        print("Enter [number {1/0} <default: 1>]")
+        value = input()
+        if(value == None):
+            value = 1
+        user_cfg['close_program_after_download'] = str(value)
+        with open('config.ini', 'w') as conf:
+            config.write(conf)
+        program_config()
+    elif (choice == "6"):
+        print("Default values form config.ini")
         config.read('config.ini')
         print("browser_visibility: ",config['DEFAULT']['browser_visibility'])
         print("card_download_interval: ",config['DEFAULT']['card_download_interval'])
         print("website_load_interval: ",config['DEFAULT']['website_load_interval'])
-        print("close_after_download: ",config['DEFAULT']['close_after_download'])
+        print("close_after_download: ",config['DEFAULT']['close_browser_after_download'])
+        print("close_after_download: ",config['DEFAULT']['close_program_after_download'])
         program_config()
-    elif (choice == "6"):
+    elif (choice == "7"):
+        print("Current [USER] values form config.ini")
+        config.read('config.ini')
+        print("browser_visibility: ", config['USER']['browser_visibility'])
+        print("card_download_interval: ", config['USER']['card_download_interval'])
+        print("website_load_interval: ", config['USER']['website_load_interval'])
+        print("close_after_download: ", config['USER']['close_browser_after_download'])
+        print("close_after_download: ", config['USER']['close_program_after_download'])
+        program_config()
+    elif (choice == "8"):
         menu()
     else:
-        print("Please select one of the correct options (1-6):")
+        print("Please select one of the correct options (1-8):")
         program_config()
 
 def main():
@@ -377,6 +416,7 @@ def main():
     config = os.path.exists("config.ini")
     if(config == False):
         create_config()
+        print("Config file not found... Generating new one...")
     menu()
 
 if __name__ == "__main__":
