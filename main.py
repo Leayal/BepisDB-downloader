@@ -154,8 +154,9 @@ def KK(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, personality = personality, game_type = game_type, modded_content = modded_content, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
-
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, personality = personality, game_type = game_type, modded_content = modded_content, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def AA2_and_AI_HS2(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -184,7 +185,9 @@ def AA2_and_AI_HS2(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, personality = personality, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, personality = personality, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def HS(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -210,8 +213,9 @@ def HS(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, personality = personality, game_type = game_type, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
-
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, personality = personality, game_type = game_type, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def PH(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -228,7 +232,9 @@ def PH(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def COM3D2(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -247,8 +253,9 @@ def COM3D2(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, preset_type = preset_type, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
-
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, preset_type = preset_type, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def SH(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -265,7 +272,9 @@ def SH(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def HC(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -285,7 +294,9 @@ def HC(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def SVS(game, url, mode):
     print("Enter in order (or use config file) the parameters or press enter to set default.")
@@ -305,7 +316,9 @@ def SVS(game, url, mode):
     show_only_featured = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, gender = gender, order_by = order_by, show_hidden = show_hidden, show_only_featured = show_only_featured, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def basic(game, url, mode):
     mode = mode
@@ -316,7 +329,9 @@ def basic(game, url, mode):
     tags = input()
     print("Start from page number: (number) <Default> = blank")
     start_from = input()
-    download(mode = mode, game = game, url = url, name = name, tags = tags, start_from = start_from)
+    download_return = download(mode = mode, game = game, url = url, name = name, tags = tags, start_from = start_from)
+    if (download_return == 1):
+        menu()
 
 def create_config():
     config = configparser.ConfigParser()
@@ -371,6 +386,7 @@ def program_config():
         program_config()
     elif (choice == "4"):
         print("Enter [number {1/0} <default: 1>]")
+        print("If browser_visibility is set to 0 and close_browser_after_download is set to 0, the program will not quit! You have to kill the process manually.")
         value = input()
         if(value == None):
             value = 1

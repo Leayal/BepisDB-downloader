@@ -24,6 +24,8 @@ I'm creating this application to learn some python and have it as a backup means
 - If the button is active -> change url and load page -> start downloading cards, until there is less than 24 cards on page or the "Next" button is disabled.
 - By default, you can see the browser working and after download finished the program closes.
 - You can edit config.ini or use built in menu to change timings and settings. (Remember to edit 'USER' config and leave DEFAULT as it is)
+- If browser_visibility is set to 0 and close_browser_after_download is set to 0, the program will not quit! You have to kill the process manually.
+
 
 ## Info for setup
 - Some cards weigh a lot, even over 25MB - if your internet is slow - CHANGE WAIT TIME - between card downloads to even 20 seconds!

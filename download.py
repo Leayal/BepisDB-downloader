@@ -11,10 +11,17 @@ def download(**data):
 
 #below code checks if the basic option is selected - if yes -> the universal function will be invoked | if no -> the advanced functions will be invoked - tailored to the data that is for set game type
     if data["mode"] == "basic":
-        basic_download(data["url"], data["name"], data["tags"], data["start_from"])
+        download_return = basic_download(data["url"], data["name"], data["tags"], data["start_from"])
+        if(download_return == 0):
+            exit(0)
+        else:
+            return 1
     else:
-        advanced_download(**data)
-
+        download_return = advanced_download(**data)
+        if(download_return == 0):
+            exit(0)
+        else:
+            return 1
 
 def basic_download(url, name, tags, start_from):
     print("Basic download function invoked.")
@@ -107,10 +114,14 @@ def basic_download(url, name, tags, start_from):
                 print("You can close the spawned browser now.")
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
                 print("-------------------")
-                print("Exiting in 10 seconds.")
                 time.sleep(10)
-                #driver.quit()
-                exit(0)
+                if(close_browser_after_download == "1"):
+                    driver.quit()
+                if(close_program_after_download == "1"):
+                    return 0
+                else:
+                    return 1
+
             next_button_script = """
             xpath = "//a[contains(text(),'Next')]";
             var matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -137,11 +148,14 @@ def basic_download(url, name, tags, start_from):
                 print("You can close the spawned browser now.")
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
                 print("-------------------")
-                print("Exiting in 5 seconds.")
                 #TO DO: if browser is invisible it should exit automatically / below line uncommented and if added
-                #driver.quit()
+                if (close_browser_after_download == "1"):
+                    driver.quit()
                 time.sleep(5)
-                exit(0)
+                if (close_program_after_download == "1"):
+                    return 0
+                else:
+                    return 1
             print("Getting url...")
             url2 = url
             url2 += "&page=" + str(i)
@@ -159,7 +173,9 @@ def basic_download(url, name, tags, start_from):
             print("-------------------")
             print("Exiting in 5 seconds.")
             time.sleep(5)
-            #driver.quit()
+            driver.quit()
+            print("Browser closed")
+            time.sleep(1)
             exit(1)
 
 #I tried to make below shorter since the download LOOP is same as in basic download, but the driver must be initialized in same method, so I can't do it without spawning additional unnecessary browsers
@@ -302,7 +318,7 @@ def advanced_download(**data):
     print("Waiting ",website_load_interval," seconds for page to load...")
     time.sleep(website_load_interval)
 
-    # base url - the url2 is for adding '&page='+i and than reseting it back to normal before adding next &page
+    # base url - the url2 is for adding '&page='+i and then reseting it back to normal before adding next &page
     url = driver.current_url
 
     #logic for start from page n
@@ -325,7 +341,7 @@ def advanced_download(**data):
     i2 = 1
     flag = 1
 
-    #base url - the url2 is for adding '&page='+i and than reseting it back to normal before adding next &page
+    #base url - the url2 is for adding '&page='+i and then reseting it back to normal before adding next &page
     url = driver.current_url
 
     while (flag == 1):
@@ -347,10 +363,15 @@ def advanced_download(**data):
                 #    flag == 0 + go back to main() // or leave like that to exit program
                 print("You can close the spawned browser now.")
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
-                print("Exiting in 10 seconds.")
+
                 time.sleep(10)
                 #driver.quit() - uncomment to auto close NOT browser - commented to let user check if card download finished -> some of them take their time by some reason
-                exit(0)
+                if(close_browser_after_download == "1"):
+                    driver.quit()
+                if (close_program_after_download == "1"):
+                    return 0
+                else:
+                    return 1
             next_button_script = """
             xpath = "//a[contains(text(),'Next')]";
             var matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -377,10 +398,13 @@ def advanced_download(**data):
                 print("You can close the spawned browser now.")
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
                 print("-------------------")
-                print("Exiting in 5 seconds.")
-                #driver.quit()
+                if (close_browser_after_download == "1"):
+                    driver.quit()
                 time.sleep(5)
-                exit(0)
+                if (close_program_after_download == "1"):
+                    return 0
+                else:
+                    return 1
             print("Getting url...")
             url2 = url
             print("Got url - adding page number...")
@@ -398,7 +422,9 @@ def advanced_download(**data):
             print("-------------------")
             print("Exiting in 5 seconds.")
             time.sleep(5)
-            #driver.quit()
+            driver.quit()
+            print("Browser closed.")
+            time.sleep(1)
             exit(1)
 
 def main():
