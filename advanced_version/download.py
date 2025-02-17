@@ -115,7 +115,7 @@ def basic_download(url, name, tags, start_from):
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
                 print("-------------------")
                 time.sleep(10)
-                if(close_browser_after_download == "1"):
+                if(close_browser_after_download == "1" or browser_visibility == "0"):
                     driver.quit()
                 if(close_program_after_download == "1"):
                     return 0
@@ -149,7 +149,7 @@ def basic_download(url, name, tags, start_from):
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
                 print("-------------------")
                 #TO DO: if browser is invisible it should exit automatically / below line uncommented and if added
-                if (close_browser_after_download == "1"):
+                if (close_browser_after_download == "1" or browser_visibility == "0"):
                     driver.quit()
                 time.sleep(5)
                 if (close_program_after_download == "1"):
@@ -366,7 +366,7 @@ def advanced_download(**data):
 
                 time.sleep(10)
                 #driver.quit() - uncomment to auto close NOT browser - commented to let user check if card download finished -> some of them take their time by some reason
-                if(close_browser_after_download == "1"):
+                if(close_browser_after_download == "1" or browser_visibility == "0"):
                     driver.quit()
                 if (close_program_after_download == "1"):
                     return 0
@@ -398,7 +398,7 @@ def advanced_download(**data):
                 print("You can close the spawned browser now.")
                 print("But before you close it -> CHECK IF DOWNLOAD FINISHED.")
                 print("-------------------")
-                if (close_browser_after_download == "1"):
+                if (close_browser_after_download == "1" or browser_visibility == "0"):
                     driver.quit()
                 time.sleep(5)
                 if (close_program_after_download == "1"):
