@@ -142,6 +142,7 @@ def basic_download(url, name, tags, start_from):
                 url2 = url + "?page=" + str(i)
             print("Url: "+url2)
             print("Waiting 5 seconds for page to load...")
+            url = url2
             driver.get(url2)
             time.sleep(5)
             i2 = 1
@@ -377,6 +378,7 @@ def advanced_download(**data):
                 url2 = url + "?page=" + str(i)
             print("Url: "+url2)
             print("Waiting 5 seconds for page to load...")
+            url = url2
             driver.get(url2)
             time.sleep(5)
             i2 = 1
